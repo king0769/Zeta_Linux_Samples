@@ -1,0 +1,56 @@
+TARGET_PATH :=$(call my-dir)
+
+include $(ENV_CLEAR)
+
+TARGET_LDFLAGS += -lminigui_ths \
+	-lutils \
+	-lrt \
+	-lpthread \
+	-law_net \
+	-lwifi_ap \
+	-ltinyalsa \
+	
+
+TARGET_CPPFLAGS += -g
+
+TARGET_CFLAGS += \
+        -fPIC
+	
+#strict compile option
+#TARGET_CFLAGS += -Werror  -Wall -Wno-unused-parameter -Wno-reorder
+compile_date=$(shell date "+%Y-%m-%d %H:%M:%S")
+#compile_version=$(addprefix $(addsuffix $(compile_date), "), ")
+TARGET_CFLAGS += -DCOMPILE_VERSION="\"$(USER)@$(TARGET_PRODUCT) $(compile_date)\""
+
+TARGET_SRC := ./main.cpp
+	
+TARGET_INC := ./include/minigui\
+	$(TARGET_PATH)/include/camera \
+	$(TARGET_PATH)/include/event \
+	$(TARGET_PATH)/include/misc \
+	$(TARGET_PATH)/include/server \
+	$(TARGET_PATH)/include/power \
+	$(TARGET_PATH)/include/storage \
+	$(TARGET_PATH)/include/widget \
+	$(TARGET_PATH)/include/window \
+	$(TARGET_TOP)/core/include/include_adas \
+	$(TARGET_TOP)/core/include \
+	$(TARGET_TOP)/core/include/cedar \
+	$(TARGET_TOP)/core/include/cutils \
+	$(TARGET_TOP)/core/include/hardware \
+	$(TARGET_TOP)/core/include/system \
+	$(TARGET_TOP)/core/include/media \
+	$(TARGET_TOP)/core/include/interface \
+	$(TARGET_TOP)/core/display \
+	$(TARGET_TOP)/core/include/media/openmax \
+	$(TARGET_TOP)/core/camera \
+	$(TARGET_TOP)/core/include/recorder\
+	$(TARGET_TOP)/core/include/mediaplayer\
+	$(TARGET_TOP)/core/include/tinyalsa 
+
+TARGET_SHARED_LIB += libcutils libinterface librecorder libmp4v2 libglog libmediaplayer libAdas libhwdisp
+
+TARGET_MODULE := demo_CameraSwitch
+
+include $(BUILD_BIN)
+
