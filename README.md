@@ -6,7 +6,7 @@ Zeta是运行于S3(ARM Cortex-A7)的产品化嵌入式Linux系统，这个项目
 #### 使用说明
 
 1. 每个目录均代码完整的Zeta App工程，把合适的工程拷贝到Zeta SDK根目录的app里。
-2. 执行zmake <dir>/zeta.in （dir指的是Sample工程的目录）。
+2. 执行zmake [dir]/zeta.in （[dir]指的是Sample工程的目录）。
 3. 同步到设备上执行。
 
 #### 参与贡献
