@@ -1,0 +1,28 @@
+TARGET_PATH :=$(call my-dir)
+
+include $(ENV_CLEAR)
+
+TARGET_SRC := main.cpp
+TARGET_INC := $(TARGET_TOP)/core/include \
+			$(TARGET_TOP)/core/include/cedar \
+			$(TARGET_TOP)/core/include/cutils \
+			$(TARGET_TOP)/core/include/hardware \
+			$(TARGET_TOP)/core/include/system \
+			$(TARGET_TOP)/core/include/media \
+			$(TARGET_TOP)/core/include/interface \
+			$(TARGET_TOP)/core/display \
+			$(TARGET_TOP)/core/include/media/openmax \
+			$(TARGET_TOP)/core/camera \
+			$(TARGET_TOP)/core/include/recorder \
+			$(TARGET_TOP)/core/include/mediaplayer\
+
+#TARGET_CFLAGS += \
+#	-fPIC -g
+TARGET_CPPFLAGS += -g
+TARGET_LDFLAGS += \
+	-lpthread
+
+TARGET_SHARED_LIB += libcutils libinterface libglog libhwdisp libmediaplayer
+
+TARGET_MODULE := demo_V4L2Capture
+include $(BUILD_BIN)
