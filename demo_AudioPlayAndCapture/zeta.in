@@ -1,0 +1,15 @@
+TARGET_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+
+TARGET_INC:= $(TARGET_TOP)/core/include/tinyalsa
+TARGET_SRC:= start_audio.c
+TARGET_CPPFLAGS += -fPIC -Wall
+TARGET_CFLAGS += -fPIC -Wall
+TARGET_MODULE := demo_AudioPlayAndCapture
+TARGET_LDFLAGS := \
+	-lcutils \
+	-lutils \
+	-ltinyalsa \
+	-lpthread \
+
+include $(BUILD_BIN)
