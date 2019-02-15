@@ -1,0 +1,24 @@
+TARGET_PATH :=$(call my-dir)
+
+include $(ENV_CLEAR)
+
+TARGET_LDFLAGS += -lutils \
+	-lrt \
+	-lpthread
+	
+
+TARGET_CPPFLAGS += -g
+
+TARGET_CFLAGS += \
+        -fPIC
+	
+
+TARGET_SRC := ./main.c
+	
+TARGET_INC := 
+TARGET_SHARED_LIB += libcutils libglog
+
+TARGET_MODULE := demo_ReadSDCardSpace
+
+include $(BUILD_BIN)
+

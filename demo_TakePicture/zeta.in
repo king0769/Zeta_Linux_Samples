@@ -1,0 +1,28 @@
+TARGET_PATH :=$(call my-dir)
+
+include $(ENV_CLEAR)
+
+TARGET_LDFLAGS += \
+	-lutils \
+	-lrt \
+	-lpthread \
+	-ltinyalsa \
+
+
+TARGET_SRC := main.cpp
+
+TARGET_INC := 	./ \
+				$(TARGET_TOP)/core/include/ \
+				$(TARGET_TOP)/core/include/interface \
+				$(TARGET_TOP)/core/include/log/ \
+				$(TARGET_TOP)/core/display/ \
+				$(TARGET_TOP)/core/include/media/ \
+				$(TARGET_TOP)/core/include/hardware/ \
+				$(TARGET_TOP)/core/include/recorder/ \
+				$(TARGET_TOP)/core/include/tinyalsa
+
+TARGET_SHARED_LIB += libinterface librecorder libmediaplayer libfdk-aac
+
+TARGET_MODULE := demo_TakePicture
+
+include $(BUILD_BIN)
