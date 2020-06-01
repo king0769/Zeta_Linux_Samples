@@ -1,0 +1,31 @@
+TARGET_PATH :=$(call my-dir)
+
+include $(ENV_CLEAR)
+
+TARGET_LDFLAGS += \
+	-lutils \
+	-lrt \
+	-lpthread \
+	-ltinyalsa \
+
+
+TARGET_SRC := main.cpp
+
+TARGET_INC := 	./ \
+				$(TARGET_TOP)/core/include/ \
+				$(TARGET_TOP)/core/include/interface \
+				$(TARGET_TOP)/core/include/log/ \
+				$(TARGET_TOP)/core/display/ \
+				$(TARGET_TOP)/core/include/media/ \
+				$(TARGET_TOP)/core/include/hardware/ \
+				$(TARGET_TOP)/core/include/recorder/ \
+				$(TARGET_TOP)/core/include/tinyalsa/\
+				$(TARGET_TOP)/core/include/rtsplite/\
+				$(TARGET_TOP)/core/include/cedar/\
+				$(TARGET_TOP)/core/include/mediaplayer/
+
+TARGET_SHARED_LIB += libmediaplayer libinterface librecorder libhwdisp libcdc_base libcdc_ve libcdc_memory libcdc_vencoder libcdc_vdecoder
+
+TARGET_MODULE := Sample_H264Decoder
+
+include $(BUILD_BIN)
